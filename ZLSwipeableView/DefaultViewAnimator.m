@@ -7,6 +7,7 @@
 //
 
 #import "DefaultViewAnimator.h"
+#import "ZLSwipeableView.h"
 
 @implementation DefaultViewAnimator
 
@@ -43,7 +44,11 @@ atOffsetFromCenter:(CGPoint)offset
               index:(NSUInteger)index
               views:(NSArray<UIView *> *)views
       swipeableView:(ZLSwipeableView *)swipeableView {
+#warning Change stationary angle
     CGFloat degree = 1;
+    if ([swipeableView.delegate respondsToSelector:@selector(fanningAngle)]) {
+        degree = [swipeableView.delegate fanningAngle];
+    }
     NSTimeInterval duration = 0.4;
     CGPoint offset = CGPointMake(0, CGRectGetHeight(swipeableView.bounds) * 0.3);
     switch (index) {

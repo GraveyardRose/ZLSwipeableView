@@ -77,6 +77,8 @@ typedef NS_ENUM(NSUInteger, ZLSwipeableViewDirection) {
     didEndSwipingView:(UIView *)view
            atLocation:(CGPoint)location;
 
+- (CGFloat)fanningAngle;
+
 @end
 
 // DataSource
