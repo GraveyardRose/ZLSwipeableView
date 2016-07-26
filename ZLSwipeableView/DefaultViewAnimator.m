@@ -33,8 +33,9 @@ atOffsetFromCenter:(CGPoint)offset
                                                         fromView:swipeableView.superview];
                        CGAffineTransform transform =
                            CGAffineTransformMakeTranslation(offset.x, offset.y);
-                       transform = CGAffineTransformRotate(transform, rotationRadian);
-                       transform = CGAffineTransformTranslate(transform, -offset.x, -offset.y);
+#warning disabling rotation to instead ftranslate
+//                       transform = CGAffineTransformRotate(transform, rotationRadian);
+//                       transform = CGAffineTransformTranslate(transform, -offset.x, -offset.y);
                        view.transform = transform;
                      }
                      completion:nil];
@@ -50,34 +51,35 @@ atOffsetFromCenter:(CGPoint)offset
         degree = [swipeableView.delegate fanningAngle];
     }
     NSTimeInterval duration = 0.4;
-    CGPoint offset = CGPointMake(0, CGRectGetHeight(swipeableView.bounds) * 0.3);
+    //CGPoint offset = CGPointMake(0, CGRectGetHeight(swipeableView.bounds) * 0.3);
+    CGPoint offset = CGPointMake(8, 0);
     switch (index) {
     case 0:
         [self rotateView:view
                      forDegree:0
                       duration:duration
-            atOffsetFromCenter:offset
+            atOffsetFromCenter:CGPointMake(offset.x*index, offset.y*index)
                  swipeableView:swipeableView];
         break;
     case 1:
         [self rotateView:view
                      forDegree:degree
                       duration:duration
-            atOffsetFromCenter:offset
+            atOffsetFromCenter:CGPointMake(offset.x*index, offset.y*index)
                  swipeableView:swipeableView];
         break;
     case 2:
         [self rotateView:view
                      forDegree:-degree
                       duration:duration
-            atOffsetFromCenter:offset
+            atOffsetFromCenter:CGPointMake(offset.x*index, offset.y*index)
                  swipeableView:swipeableView];
         break;
     case 3:
         [self rotateView:view
                      forDegree:0
                       duration:duration
-            atOffsetFromCenter:offset
+            atOffsetFromCenter:CGPointMake(offset.x*index, offset.y*index)
                  swipeableView:swipeableView];
         break;
     default:
