@@ -31,8 +31,7 @@ atOffsetFromCenter:(CGPoint)offset
                      animations:^{
                        view.center = [swipeableView convertPoint:swipeableView.center
                                                         fromView:swipeableView.superview];
-                       CGAffineTransform transform =
-                           CGAffineTransformMakeTranslation(offset.x, offset.y);
+                         CGAffineTransform transform = CGAffineTransformMakeScale(degree, degree);                          transform = CGAffineTransformMakeTranslation(offset.x, offset.y);
 #warning disabling rotation to instead ftranslate
 //                       transform = CGAffineTransformRotate(transform, rotationRadian);
 //                       transform = CGAffineTransformTranslate(transform, -offset.x, -offset.y);
@@ -56,28 +55,28 @@ atOffsetFromCenter:(CGPoint)offset
     switch (index) {
     case 0:
         [self rotateView:view
-                     forDegree:0
+                     forDegree:1
                       duration:duration
             atOffsetFromCenter:CGPointMake(offset.x*index, offset.y*index)
                  swipeableView:swipeableView];
         break;
     case 1:
         [self rotateView:view
-                     forDegree:degree
+                     forDegree:0.9
                       duration:duration
             atOffsetFromCenter:CGPointMake(offset.x*index, offset.y*index)
                  swipeableView:swipeableView];
         break;
     case 2:
         [self rotateView:view
-                     forDegree:-degree
+                     forDegree:0.8
                       duration:duration
             atOffsetFromCenter:CGPointMake(offset.x*index, offset.y*index)
                  swipeableView:swipeableView];
         break;
     case 3:
         [self rotateView:view
-                     forDegree:0
+                     forDegree:0.7
                       duration:duration
             atOffsetFromCenter:CGPointMake(offset.x*index, offset.y*index)
                  swipeableView:swipeableView];
