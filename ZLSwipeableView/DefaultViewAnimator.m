@@ -25,14 +25,12 @@
 atOffsetFromCenter:(CGPoint)offset
      swipeableView:(ZLSwipeableView *)swipeableView {
     float rotationRadian = [self degreesToRadians:degree];
-    view.center = [swipeableView convertPoint:swipeableView.center
-                                     fromView:swipeableView.superview];
-    view.hidden = NO;
     [UIView animateWithDuration:duration
                           delay:0
                         options:UIViewAnimationOptionAllowUserInteraction
                      animations:^{
-                       
+                       view.center = [swipeableView convertPoint:swipeableView.center
+                                                        fromView:swipeableView.superview];
                          
                        CGAffineTransform transform = CGAffineTransformMakeTranslation(offset.x, offset.y);
                          transform = CGAffineTransformScale(transform, degree, degree);
@@ -41,8 +39,7 @@ atOffsetFromCenter:(CGPoint)offset
 //                       transform = CGAffineTransformTranslate(transform, -offset.x, -offset.y);
                        view.transform = transform;
                      }
-                     completion:^(BOOL finished) {
-                     }];
+                     completion:nil];
 }
 
 - (void)animateView:(UIView *)view
@@ -80,7 +77,6 @@ atOffsetFromCenter:(CGPoint)offset
                  swipeableView:swipeableView];
         break;
     case 3:
-            view.hidden = YES;
         [self rotateView:view
                      forDegree:0.85
                       duration:duration
