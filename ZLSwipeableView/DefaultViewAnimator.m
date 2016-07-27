@@ -31,14 +31,17 @@ atOffsetFromCenter:(CGPoint)offset
                      animations:^{
                        view.center = [swipeableView convertPoint:swipeableView.center
                                                         fromView:swipeableView.superview];
+                         
                        CGAffineTransform transform = CGAffineTransformMakeTranslation(offset.x, offset.y);
                          transform = CGAffineTransformScale(transform, degree, degree);
-#warning disabling rotation to instead ftranslate
+#warning disabling rotation to instead translate
 //                       transform = CGAffineTransformRotate(transform, rotationRadian);
 //                       transform = CGAffineTransformTranslate(transform, -offset.x, -offset.y);
                        view.transform = transform;
                      }
-                     completion:nil];
+                     completion:^(BOOL finished) {
+                         view.hidden = NO;
+                     }];
 }
 
 - (void)animateView:(UIView *)view
@@ -76,6 +79,7 @@ atOffsetFromCenter:(CGPoint)offset
                  swipeableView:swipeableView];
         break;
     case 3:
+            view.hidden = YES;
         [self rotateView:view
                      forDegree:0.85
                       duration:duration
